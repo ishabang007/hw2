@@ -35,16 +35,25 @@ public class ExpenseTrackerController {
     view.getFilterBtn().addActionListener(e -> {
       double amount = view.getAmountField();
       String category = view.getCategoryField();
-
+    
       if (!category.isEmpty()) {
+        if (!InputValidation.validateCategory(category)) {
+          JOptionPane.showMessageDialog(null, "Invalid Category");
+          return;
+        }
         applyFilter(new CategoryFilter(category));
+    
       } else if (amount > 0) {
+        if (!InputValidation.validateAmount(amount)) {
+          JOptionPane.showMessageDialog(null, "Invalid Amount");
+          return;
+        }
         applyFilter(new AmountFilter(amount));
+    
       } else {
         refresh(); 
       }
     });
-  }
 
   public void refresh() {
 
