@@ -4,6 +4,7 @@ import view.ExpenseTrackerView;
 
 import java.util.List;
 
+import model.TransactionFilter;
 
 
 import model.ExpenseTrackerModel;
