@@ -5,10 +5,11 @@ import view.ExpenseTrackerView;
 import java.util.List;
 
 import model.TransactionFilter;
-
-
 import model.ExpenseTrackerModel;
 import model.Transaction;
+import model.AmountFilter;
+import model.CategoryFilter;
+
 public class ExpenseTrackerController {
   
   private ExpenseTrackerModel model;
@@ -19,6 +20,30 @@ public class ExpenseTrackerController {
     this.view = view;
 
     // Set up view event handlers
+    view.getAddTransactionBtn().addActionListener(e -> {
+      double amount = view.getAmountField();
+      String category = view.getCategoryField();
+
+      if (addTransaction(amount, category)) {
+        view.setAmountField(null);
+        view.setCategoryField(null);
+      } else {
+        JOptionPane.showMessageDialog(null, "Invalid input");
+      }
+    });
+
+    view.getFilterBtn().addActionListener(e -> {
+      double amount = view.getAmountField();
+      String category = view.getCategoryField();
+
+      if (!category.isEmpty()) {
+        applyFilter(new CategoryFilter(category));
+      } else if (amount > 0) {
+        applyFilter(new AmountFilter(amount));
+      } else {
+        refresh(); 
+      }
+    });
   }
 
   public void refresh() {
