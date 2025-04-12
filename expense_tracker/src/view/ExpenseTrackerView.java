@@ -52,17 +52,17 @@ public class ExpenseTrackerView extends JFrame {
     inputPanel.add(amountField);
     inputPanel.add(categoryLabel); 
     inputPanel.add(categoryField);
-    // inputPanel.add(addTransactionBtn);
-    // inputPanel.add(filterBtn);
+    inputPanel.add(addTransactionBtn);
+    inputPanel.add(filterBtn);
   
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.add(addTransactionBtn);
-    buttonPanel.add(filterBtn);
+    // JPanel buttonPanel = new JPanel();
+    // buttonPanel.add(addTransactionBtn);
+    // buttonPanel.add(filterBtn);
   
     // Add panels to frame
     add(inputPanel, BorderLayout.NORTH);
     add(new JScrollPane(transactionsTable), BorderLayout.CENTER); 
-    add(buttonPanel, BorderLayout.SOUTH);
+    // add(buttonPanel, BorderLayout.SOUTH);
   
     // Set frame properties
     setSize(600, 400);
