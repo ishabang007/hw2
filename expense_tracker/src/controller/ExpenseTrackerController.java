@@ -38,14 +38,14 @@ public class ExpenseTrackerController {
       String category = view.getCategoryField();
     
       if (!category.isEmpty()) {
-        if (!InputValidation.validateCategory(category)) {
+        if (!InputValidation.isValidCategory(category)) {
           JOptionPane.showMessageDialog(null, "Invalid Category");
           return;
         }
         applyFilter(new CategoryFilter(category));
     
       } else if (amount > 0) {
-        if (!InputValidation.validateAmount(amount)) {
+        if (!InputValidation.isValidAmount(amount)) {
           JOptionPane.showMessageDialog(null, "Invalid Amount");
           return;
         }
