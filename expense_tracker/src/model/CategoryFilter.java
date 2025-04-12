@@ -1,3 +1,8 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CategoryFilter implements TransactionFilter {
 
     private String category;
