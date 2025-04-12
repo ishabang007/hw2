@@ -54,6 +54,7 @@ public class ExpenseTrackerController {
         refresh(); 
       }
     });
+  }
 
   public void refresh() {
 
