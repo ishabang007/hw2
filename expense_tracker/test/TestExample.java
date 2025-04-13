@@ -1,6 +1,7 @@
 // package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.util.List;
 
@@ -75,6 +76,56 @@ public class TestExample {
         // Check the total cost after removing the transaction
         double totalCost = getTotalCost();
         assertEquals(0.00, totalCost, 0.01);
+    }
+
+    @Test
+    public void testInvalidInputHandling() {
+        assertEquals(0, model.getTransactions().size());
+      
+        assertFalse(controller.addTransaction(-10.00, "food")); 
+        assertFalse(controller.addTransaction(20.00, "invalidCategory")); 
+        assertFalse(controller.addTransaction(30.00, "")); 
+        assertFalse(controller.addTransaction(40.00, null)); 
+    
+        assertEquals(0, model.getTransactions().size());
+        assertEquals(0.00, getTotalCost(), 0.01);
+    }
+
+    @Test
+    public void testFilterByAmount() {
+        controller.addTransaction(50.00, "food");
+        controller.addTransaction(75.00, "food");
+        controller.addTransaction(50.00, "entertainment");
+    
+        List<Transaction> filteredTransactions = model.getTransactionsByAmount(50.00);
+    
+        assertEquals(2, filteredTransactions.size());
+        assertEquals(50.00, filteredTransactions.get(0).getAmount(), 0.01);
+        assertEquals(50.00, filteredTransactions.get(1).getAmount(), 0.01);
+    }
+
+    @Test
+    public void testFilterByCategory() {
+        controller.addTransaction(50.00, "food");
+        controller.addTransaction(75.00, "food");
+        controller.addTransaction(50.00, "entertainment");
+    
+        List<Transaction> filteredTransactions = model.getTransactionsByCategory("food");
+    
+        assertEquals(2, filteredTransactions.size());
+        assertEquals("food", filteredTransactions.get(0).getCategory());
+        assertEquals("food", filteredTransactions.get(1).getCategory());
+    }
+  
+    @Test
+    public void testAddValidTransaction() {
+        assertEquals(0, model.getTransactions().size());
+      
+        assertTrue(controller.addTransaction(100.00, "travel"));
+      
+        assertEquals(1, model.getTransactions().size());
+      
+        assertEquals(100.00, getTotalCost(), 0.01);
     }
     
 }
