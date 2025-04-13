@@ -97,7 +97,8 @@ public class TestExample {
         controller.addTransaction(75.00, "food");
         controller.addTransaction(50.00, "entertainment");
     
-        List<Transaction> filteredTransactions = model.getTransactionsByAmount(50.00);
+        TransactionFilter amountFilter = new AmountFilter(50.00);
+        List<Transaction> filteredTransactions = amountFilter.filter(model.getTransactions());
     
         assertEquals(2, filteredTransactions.size());
         assertEquals(50.00, filteredTransactions.get(0).getAmount(), 0.01);
@@ -110,7 +111,8 @@ public class TestExample {
         controller.addTransaction(75.00, "food");
         controller.addTransaction(50.00, "entertainment");
     
-        List<Transaction> filteredTransactions = model.getTransactionsByCategory("food");
+        TransactionFilter categoryFilter = new CategoryFilter("food");
+        List<Transaction> filteredTransactions = categoryFilter.filter(model.getTransactions());
     
         assertEquals(2, filteredTransactions.size());
         assertEquals("food", filteredTransactions.get(0).getCategory());
