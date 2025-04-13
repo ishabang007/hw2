@@ -13,6 +13,11 @@ import model.ExpenseTrackerModel;
 import model.Transaction;
 import view.ExpenseTrackerView;
 
+import model.TransactionFilter;
+import model.AmountFilter;
+import model.CategoryFilter;
+
+
 
 public class TestExample {
   
