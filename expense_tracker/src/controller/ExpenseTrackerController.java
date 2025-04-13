@@ -21,17 +21,6 @@ public class ExpenseTrackerController {
     this.view = view;
 
     // Set up view event handlers
-    // view.getAddTransactionBtn().addActionListener(e -> {
-    //   double amount = view.getAmountField();
-    //   String category = view.getCategoryField();
-
-    //   if (addTransaction(amount, category)) {
-    //     view.setAmountField(null);
-    //     view.setCategoryField(null);
-    //   } else {
-    //     JOptionPane.showMessageDialog(null, "Invalid input");
-    //   }
-    // });
 
     view.getFilterBtn().addActionListener(e -> {
       double amount = view.getAmountField();
